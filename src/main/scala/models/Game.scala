@@ -1,25 +1,21 @@
 package models
 
-class Game(attempt : Int = 0, proposedCombination: ProposedCombination = new ProposedCombination(), secretCombination: secretCombination = new SecretCombination()) {
+class Game(proposedCombination: List[ProposedCombination] = new ProposedCombination(), secretCombination: SecretCombination = new SecretCombination()) {
 
-  private val attempt_ = attempt
+  private val MAX_LONG = 10
   private val proposedCombination_ = proposedCombination
+  private val secretCombination_ = secretCombination
 
-  def put(color: Color): Game = {
-    val newAttempts = this.attempt_ +1
-    val newProposedCombination = this.proposedCombination_.put(color, this.attempt_)
-    new Game(newAttempts, newProposedCombination)
+  def addProposedCombination(newProposedCombination: ProposedCombination): Game = {
+    new  Game(newProposedCombination::this.proposedCombination_, this.secretCombination_)
   }
 
-  def isMastermind: Boolean = proposedCombination.isMastermind
+  def isLooser: Boolean =
+    this.proposedCombination_.length == this.MAX_LONG
 
-  def isComplete: Boolean = proposedCombination.isComplete
-
-  def getProposedCombination = this.proposedCombination_
-
-  def getAttempt = this.attempt_
-
-  override def toString():String =
-    s"[$attempt, $proposedCombination]"
+  def isWinner: Boolean =
+    proposedCombination_ match {
+      case head::_ => head == this.secretCombination_.get // TODO: return value to compare with proposedCombination head
+      case _ => false
+    }
 }
-
