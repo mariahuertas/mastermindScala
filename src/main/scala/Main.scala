@@ -1,5 +1,4 @@
-import mastermind.models.Game
-import mastermind.views.{GameView, ProposedCombinationView}
+import models.Game
 
 object Main {
 
@@ -10,10 +9,10 @@ object Main {
     GameView.write(game)
     do {
       if (!game.isComplete){
-        game = game.put(ProposedCombinationView.read)
+        game = game.addProposedCombination(ProposedCombinationView.read)
       }
       GameView.write(game)
-    } while (!game.mastermind)
+    } while (!game.isComplete)
   }
 
 }

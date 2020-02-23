@@ -13,7 +13,7 @@ class SecretCombination(secretCombination: List[Color.Color] = Nil) {
     secretCombination_
 
   def generateSecretCombination: List[Color.Color] =
-    (0 to 4).map(_ => (new util.Random).nextInt(4)).toList // TODO move nextgIn to Color enum
+    (0 to 4).map(_ => Color.getRandomColor()).toList
 
 }
 
