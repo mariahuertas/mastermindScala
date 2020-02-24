@@ -6,12 +6,12 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    GameView.write(game)
+   // GameView.write(game)
     do {
       if (!game.isComplete){
-        game = game.addProposedCombination(ProposedCombinationView.read)
+      //  game = game.addProposedCombination(ProposedCombinationView.read)
       }
-      GameView.write(game)
+     // GameView.write(game)
     } while (!game.isComplete)
   }
 
