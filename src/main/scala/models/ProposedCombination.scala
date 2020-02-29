@@ -1,6 +1,6 @@
 package models
 
-class ProposedCombination(proposedCombination: List[Color.Color],secretCombination: List[Color.Color]) {
+class ProposedCombination(proposedCombination: List[Color.Color]) {
   private val MAX_COLOR = 4
   val proposedCombination_ = proposedCombination
   var blackToken = 0
@@ -9,7 +9,7 @@ class ProposedCombination(proposedCombination: List[Color.Color],secretCombinati
   def getProposedCombination: List[Color.Color] =
     proposedCombination_
 
-  def getTokens: (Int, Int) = {
+  def getTokens (secretCombination: List[Color.Color]): (Int, Int) = {
     blackToken = calculateBlackToken(proposedCombination, secretCombination)
     whiteToken = calculateWhiteToken(proposedCombination, secretCombination)
     (getBlackToken, getWhiteToken)
@@ -43,7 +43,7 @@ class ProposedCombination(proposedCombination: List[Color.Color],secretCombinati
 
   def getBlackToken: Int = blackToken
 
-  def isWinner(): Boolean =
+  def isWinner(secretCombination: List[Color.Color]): Boolean =
     calculateBlackToken(proposedCombination, secretCombination) == this.MAX_COLOR
 }
 

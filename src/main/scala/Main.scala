@@ -1,4 +1,5 @@
 import models.Game
+import views.{GameView, ProposedCombinationView}
 
 object Main {
 
@@ -6,13 +7,15 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-   // GameView.write(game)
+   GameView.writeSecret(game)
     do {
-      if (!game.isComplete){
-      //  game = game.addProposedCombination(ProposedCombinationView.read)
-      }
-     // GameView.write(game)
+      game = game.addProposedCombination(ProposedCombinationView.read)
+      //GameView.write(game)
     } while (!game.isComplete)
+
+    if (game.isWinner){
+      print("BIEN")
+    }
   }
 
 }

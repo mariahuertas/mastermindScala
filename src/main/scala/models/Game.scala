@@ -7,13 +7,17 @@ class Game(proposedCombination: List[ProposedCombination], secretCombination: Se
   private val secretCombination_ = secretCombination
 
   def addProposedCombination(newProposedCombination: ProposedCombination): Game = {
-    new  Game(newProposedCombination::this.proposedCombination_, this.secretCombination_)
+    new Game(newProposedCombination::this.proposedCombination_, this.secretCombination_)
   }
 
-  def isComplete: Boolean =
+  def isComplete: Boolean = {
     isWinner || this.proposedCombination_.length == this.MAX_LONG
+  }
 
   def isWinner: Boolean =
-    proposedCombination_.head.isWinner()
+   proposedCombination_.head.isWinner(secretCombination_.getSecretCombination)
 
+
+  def getProposedCombination: List[ProposedCombination] = proposedCombination_
+  def getSecretCombination: SecretCombination = secretCombination_
 }
