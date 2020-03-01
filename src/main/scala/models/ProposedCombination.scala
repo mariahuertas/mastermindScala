@@ -9,10 +9,13 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
   def getProposedCombination: List[Color.Color] =
     proposedCombination_
 
-  def getTokens (secretCombination: List[Color.Color]): (Int, Int) = {
+  def getTokens(): (Int, Int) = {
+    (getBlackToken, getWhiteToken)
+  }
+
+  def calculateTokens (secretCombination: List[Color.Color]) = {
     blackToken = calculateBlackToken(proposedCombination, secretCombination)
     whiteToken = calculateWhiteToken(proposedCombination, secretCombination)
-    (getBlackToken, getWhiteToken)
   }
 
   def calculateBlackToken(proposedCombination: List[Color.Color], secretCombination: List[Color.Color]): Int = {

@@ -6,12 +6,14 @@ class Game(proposedCombination: List[ProposedCombination], secretCombination: Se
   private val proposedCombination_ = proposedCombination
   private val secretCombination_ = secretCombination
 
+  // TODO: add Result class to ProposedCombination
   def addProposedCombination(newProposedCombination: ProposedCombination): Game = {
+    newProposedCombination.calculateTokens(secretCombination_.getSecretCombination)
     new Game(newProposedCombination::this.proposedCombination_, this.secretCombination_)
   }
 
   def isComplete: Boolean = {
-    isWinner || this.proposedCombination_.length == this.MAX_LONG
+    isWinner || getTurn == this.MAX_LONG
   }
 
   def isWinner: Boolean =
@@ -19,4 +21,5 @@ class Game(proposedCombination: List[ProposedCombination], secretCombination: Se
 
   def getProposedCombination: List[ProposedCombination] = proposedCombination_
   def getSecretCombination: SecretCombination = secretCombination_
+  def getTurn = this.proposedCombination_.length
 }

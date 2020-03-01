@@ -10,7 +10,7 @@ object Main {
    GameView.writeSecret(game)
     do {
       game = game.addProposedCombination(ProposedCombinationView.read)
-      //GameView.write(game)
+      GameView.writeCombinations(game)
     } while (!game.isComplete)
 
     GameView.writeEndGame(game)
