@@ -17,7 +17,6 @@ class Game(proposedCombination: List[ProposedCombination], secretCombination: Se
   def isWinner: Boolean =
    proposedCombination_.head.isWinner(secretCombination_.getSecretCombination)
 
-
   def getProposedCombination: List[ProposedCombination] = proposedCombination_
   def getSecretCombination: SecretCombination = secretCombination_
 }

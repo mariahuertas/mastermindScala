@@ -13,9 +13,7 @@ object Main {
       //GameView.write(game)
     } while (!game.isComplete)
 
-    if (game.isWinner){
-      print("BIEN")
-    }
+    GameView.writeEndGame(game)
   }
 
 }
