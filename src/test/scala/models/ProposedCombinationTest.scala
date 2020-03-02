@@ -5,22 +5,22 @@ import org.scalatest.FunSuite
 class ProposedCombinationTest extends FunSuite {
 
     test("hay aciertos blancos y aciertos negros") {
-      val secretCombination = new SecretCombination(List(Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE))
-      val proposedCombination = new ProposedCombination(List(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE))
+      val secretCombination = new SecretCombination(List(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE))
+      val proposedCombination = new ProposedCombination(List(Color.BLUE, Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE))
       proposedCombination.calculateTokens(secretCombination.getSecretCombination)
       assert(proposedCombination.getTokens() == (2,2))
     }
 
     test("solo aciertos negros") {
-      val secretCombination = new SecretCombination(List(Color.RED, Color.RED, Color.RED, Color.RED, Color.RED))
-      val proposedCombination = new ProposedCombination(List(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE))
+      val secretCombination = new SecretCombination(List(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE))
+      val proposedCombination = new ProposedCombination(List(Color.RED, Color.RED, Color.RED, Color.RED, Color.RED))
       proposedCombination.calculateTokens(secretCombination.getSecretCombination)
       assert(proposedCombination.getTokens == (1,0))
     }
 
     test("solo aciertos blancos") {
-      val secretCombination = new SecretCombination(List(Color.BLUE, Color.RED, Color.RED, Color.RED, Color.RED))
-      val proposedCombination = new ProposedCombination(List(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE))
+      val secretCombination = new SecretCombination(List(Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE))
+      val proposedCombination = new ProposedCombination(List(Color.BLUE, Color.RED, Color.RED, Color.RED, Color.RED))
       proposedCombination.calculateTokens(secretCombination.getSecretCombination)
       assert(proposedCombination.getTokens == (0,2))
     }
