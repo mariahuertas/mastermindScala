@@ -15,7 +15,7 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
 
   def calculateTokens (secretCombination: List[Color.Color]) = {
     blackToken = calculateBlackToken(proposedCombination, secretCombination)
-    whiteToken = calculateWhiteToken(proposedCombination, secretCombination)
+    whiteToken = calculateWhiteToken(getNewCombination(secretCombination,proposedCombination), getNewCombination(proposedCombination, secretCombination))
   }
 
   def calculateBlackToken(proposedCombination: List[Color.Color], secretCombination: List[Color.Color]): Int = {
@@ -31,18 +31,36 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
       case Nil => 0
       case head::tail if isMember(head, secretCombination) => 1 + calculateWhiteToken(tail, secretCombination)
       case _::tail => calculateWhiteToken(tail, secretCombination)
+     }
+   }
+
+  /*
+  def removeIndex[A](s: Seq[A], n: Int): Seq[A] = s.indices.collect { case i if i != n => s(i) }
+
+  def deleteRepeatElement2(element: Color.Color, list: List[Color.Color]): List[Color.Color] = {
+    print(list.indexOf(element))
+    println(list)
+    removeIndex(list, list.indexOf(element)).toList
+  }
+*/
+
+  def getNewCombination(combination1 : List[Color.Color], combination2 : List[Color.Color]) : List[Color.Color] = {
+    combination1 match {
+      case Nil => combination1
+      case head::tail if head == combination2.head => getNewCombination(tail, combination2.tail)
+      case head::tail => head::getNewCombination(tail, combination2.tail)
     }
   }
 
-  def isMember(value: Color.Color, list: List[Color.Color]): Boolean = {
-    list match {
+  def isMember(color: Color.Color, combination: List[Color.Color]): Boolean = {
+    combination match {
       case Nil => false
-      case head::_ if head eq value => true
-      case _::tail => isMember(value, tail)
+      case head::_ if head eq color => true
+      case _::tail => isMember(color, tail)
     }
   }
 
-  def getWhiteToken: Int = whiteToken-blackToken
+  def getWhiteToken: Int = whiteToken
 
   def getBlackToken: Int = blackToken
 
