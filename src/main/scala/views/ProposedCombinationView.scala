@@ -22,24 +22,10 @@ object ProposedCombinationView {
     val proposedColor = GestorIO.readString("COMBINACION")
 
     proposedColor.length match {
-      case 4 if isColor(proposedColor) => new ProposedCombination(getColorList(proposedColor))
+      case 4 if ColorView.isColor(proposedColor) => new ProposedCombination(ColorView.getColorList(proposedColor))
       case _ =>  read()
     }
   }
 
-  def isColor(proposedColor: String): Boolean = {
-    proposedColor match {
-      case "" => true
-      case _ if Color.isColor(proposedColor.head) => isColor(proposedColor.tail)
-      case _ => false
-    }
-  }
-
-  def getColorList(proposedColor: String): List[Color.Color] = {
-    proposedColor match {
-      case "" => Nil
-      case _ => Color.getColor(proposedColor.head)::getColorList(proposedColor.tail)
-    }
-  }
 
 }
