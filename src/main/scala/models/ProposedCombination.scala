@@ -64,7 +64,14 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
 
   def getBlackToken: Int = blackToken
 
-  def isWinner(secretCombination: List[Color.Color]): Boolean =
-    calculateBlackToken(proposedCombination, secretCombination) == this.MAX_COLOR
+  def isWinner: Boolean =
+    getBlackToken == this.MAX_COLOR
+
+  override def equals(that: Any): Boolean =
+    that match {
+      case that: ProposedCombination =>
+        this.proposedCombination_ == that.proposedCombination_
+      case _ => false
+    }
 }
 

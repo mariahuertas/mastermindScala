@@ -15,5 +15,11 @@ class SecretCombination(secretCombination: List[Color.Color] = Nil) {
   def generateSecretCombination: List[Color.Color] =
     (0 to 3).map(_ => Color.getRandomColor()).toList
 
+  override def equals(that: Any): Boolean =
+    that match {
+      case that: SecretCombination =>
+        this.secretCombination_ == that.secretCombination_
+      case _ => false
+    }
 }
 
