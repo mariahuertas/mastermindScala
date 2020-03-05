@@ -6,7 +6,6 @@ class Game(proposedCombination: List[ProposedCombination], secretCombination: Se
   private val proposedCombination_ = proposedCombination
   private val secretCombination_ = secretCombination
 
-  // TODO: add Result class to ProposedCombination
   def addProposedCombination(newProposedCombination: ProposedCombination): Game = {
     newProposedCombination.calculateTokens(secretCombination_.getSecretCombination)
     new Game(newProposedCombination::this.proposedCombination_, this.secretCombination_)

@@ -3,7 +3,7 @@ package views
 import models.{Game, ProposedCombination, Color}
 
 object ProposedCombinationView {
-  def writeV(game: Game) = {
+  def writeCombinations(game: Game) = {
     val proposedCombination = game.getProposedCombination
     println("-----------------------------")
     for (combination <- proposedCombination.indices) {

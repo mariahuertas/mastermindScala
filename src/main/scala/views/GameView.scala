@@ -1,11 +1,10 @@
 package views
 
 import models.Game
-import views.SecretCombinationView
 
 object GameView {
   def writeCombinations(game: Game) = {
-    ProposedCombinationView.writeV(game)
+    ProposedCombinationView.writeCombinations(game)
   }
 
   def writeSecret(game: Game) =

@@ -34,16 +34,6 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
      }
    }
 
-  /*
-  def removeIndex[A](s: Seq[A], n: Int): Seq[A] = s.indices.collect { case i if i != n => s(i) }
-
-  def deleteRepeatElement2(element: Color.Color, list: List[Color.Color]): List[Color.Color] = {
-    print(list.indexOf(element))
-    println(list)
-    removeIndex(list, list.indexOf(element)).toList
-  }
-*/
-
   def getNewCombination(combination1 : List[Color.Color], combination2 : List[Color.Color]) : List[Color.Color] = {
     combination1 match {
       case Nil => combination1
