@@ -2,9 +2,9 @@ package models
 
 class ProposedCombination(proposedCombination: List[Color.Color]) {
   private val MAX_COLOR = 4
-  val proposedCombination_ = proposedCombination
-  var blackToken = 0
-  var whiteToken = 0
+  private val proposedCombination_ = proposedCombination
+  private var blackToken = 0
+  private var whiteToken = 0
 
   def getProposedCombination: List[Color.Color] =
     proposedCombination_
@@ -21,8 +21,8 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
   def calculateBlackToken(proposedCombination: List[Color.Color], secretCombination: List[Color.Color]): Int = {
     proposedCombination match {
       case Nil => 0
-      case head :: tail if head == secretCombination.head => 1 + calculateBlackToken(tail, secretCombination.tail)
-      case _ :: tail => calculateBlackToken(tail, secretCombination.tail)
+      case head::tail if head == secretCombination.head => 1 + calculateBlackToken(tail, secretCombination.tail)
+      case _::tail => calculateBlackToken(tail, secretCombination.tail)
     }
   }
 
@@ -37,7 +37,7 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
   def getNewCombination(combination1 : List[Color.Color], combination2 : List[Color.Color]) : List[Color.Color] = {
     combination1 match {
       case Nil => combination1
-      case head::tail if head == combination2.head => getNewCombination(tail, combination2.tail)
+      case head::tail if head==combination2.head => getNewCombination(tail, combination2.tail)
       case head::tail => head::getNewCombination(tail, combination2.tail)
     }
   }
@@ -54,8 +54,9 @@ class ProposedCombination(proposedCombination: List[Color.Color]) {
 
   def getBlackToken: Int = blackToken
 
-  def isWinner: Boolean =
+  def isWinner: Boolean = {
     getBlackToken == this.MAX_COLOR
+  }
 
   override def equals(that: Any): Boolean =
     that match {

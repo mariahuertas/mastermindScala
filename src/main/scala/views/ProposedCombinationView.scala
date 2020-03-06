@@ -26,6 +26,4 @@ object ProposedCombinationView {
       case _ =>  read()
     }
   }
-
-
 }

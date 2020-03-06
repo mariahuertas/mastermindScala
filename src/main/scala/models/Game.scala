@@ -15,16 +15,15 @@ class Game(proposedCombination: List[ProposedCombination], secretCombination: Se
     isWinner || getTurn == this.MAX_LONG
   }
 
-  def isWinner: Boolean =
-   proposedCombination_.head.isWinner
-
+  def isWinner: Boolean = proposedCombination_.head.isWinner
   def getProposedCombination: List[ProposedCombination] = proposedCombination_
   def getSecretCombination: SecretCombination = secretCombination_
   def getTurn = this.proposedCombination_.length
 
   override def equals(that: Any): Boolean =
     that match {
-      case that: Game => this.secretCombination_ == that.secretCombination_ && this.proposedCombination_.head == that.proposedCombination_.head
+      case that: Game =>
+        this.secretCombination_ == that.secretCombination_ && this.proposedCombination_.head == that.proposedCombination_.head
       case _ => false
     }
 }
